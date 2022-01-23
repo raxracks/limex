@@ -1,6 +1,7 @@
 {
     "C_Cpp.errorSquiggles": "Disabled",
     "files.associations": {
-        "kernel.h": "c"
+        "kernel.h": "c",
+        "ps2.h": "c"
     }
 }

@@ -48,7 +48,7 @@ void print_status(char* text, int level, int go_up) {
         case 0:
             if(go_up == 1) cursor_up(1);
             
-            printf("%s[%s.%s] %s                                   \n", WHITE, BLUE, WHITE, text);
+            printf("%s[%s %s] %s                                   \n", WHITE, BLUE, WHITE, text);
             break;
         case 1:
             if(go_up == 1) cursor_up(1);
@@ -63,7 +63,7 @@ void print_status(char* text, int level, int go_up) {
         case 3:
             if(go_up == 1) cursor_up(1);
 
-            printf("%s[%s*%s] %s                                   \n", WHITE, RED, WHITE, text);
+            printf("%s[%s!%s] %s                                   \n", WHITE, RED, WHITE, text);
             break;
         case 4:
             break;

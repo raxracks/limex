@@ -11,7 +11,7 @@ override KERNEL := limux.elf
 # We are only using "cc" as a placeholder here. It may work by using
 # the host system's toolchain, but this is not guaranteed.
 ifeq ($(origin CC), default)
-CC := x86_64-linux-gnu-gcc
+CC := gcc
 endif
 
 ASM := nasm
@@ -19,11 +19,11 @@ ASM := nasm
 # Likewise, "ld" here is just a placeholder and your mileage may vary if using the
 # host's "ld".
 ifeq ($(origin LD), default)
-LD := x86_64-linux-gnu-ld
+LD := ld
 endif
 
 # User controllable CFLAGS.
-CFLAGS ?= -Wall -Wextra -O2 -pipe -Werror
+CFLAGS ?= -Wall -Wextra -O2 -pipe -Werror -Wno-unused-variable -Wno-unused-but-set-variable
 ASMFLAGS ?= -felf64
 
 # User controllable linker flags. We set none by default.

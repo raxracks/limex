@@ -1,4 +1,5 @@
 #include "framebuffer/framebuffer.h"
+#include "drivers/keyboard/ps2.h"
 #include "sys/scheduler/rtc.h"
 #include "terminal/terminal.h"
 #include "kernel/kernel.h"
@@ -71,7 +72,26 @@ void _start(struct stivale2_struct *stivale2_struct) {
     print_status("IDT Initialized", SUCCESS, 1);
 
     for(;;) {
-        // printf("Date: %02d/%02d/%02d %02d:%02d:%02d  \n\033[1A", (int)rtc_day(), (int)rtc_month(), (int)rtc_year(), (int)rtc_hour(), (int)rtc_minute(), (int)rtc_second());
-        asm ("hlt");
+        char character = nonblocking_getchar();
+
+        if(character != 0) {
+            char offset = 0;
+
+            if(is_shift_down() && character >= 97 && character <= 122) {
+                offset = -32;
+            }
+
+            if(character == 56) {
+                cursor_up(1);
+            } else {
+                putchar_(character + offset);
+
+                //printf("%d", (int)character);
+
+                if(character == 8) {
+                    print(" \b");
+                }
+            }
+        }
     }
 }
